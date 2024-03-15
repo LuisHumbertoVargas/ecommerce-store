@@ -12,10 +12,10 @@ interface CurrencyProps {
 }
 
 const Currency: React.FC<CurrencyProps> = ({ value }) => {
-  const [isMounted, setIsMounted] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted: false;
+    setIsMounted(true)
   }, []);
 
   if (!isMounted) {

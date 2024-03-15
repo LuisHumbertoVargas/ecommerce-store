@@ -26,6 +26,11 @@ export interface Images {
   url: string;
 }
 
+export interface Image {
+  id: string;
+  url: string;
+}
+
 export interface Size {
   id: string;
   name: string;
