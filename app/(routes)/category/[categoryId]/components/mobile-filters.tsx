@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import ButtonBag from '@/components/ui/button-bag';
+import ButtonBag from '@/components/ui/my-button';
 import IconButton from '@/components/ui/icon-button';
 import { Dialog } from '@headlessui/react';
 import { Plus, X } from 'lucide-react';

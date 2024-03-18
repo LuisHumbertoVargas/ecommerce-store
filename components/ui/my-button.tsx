@@ -2,10 +2,10 @@ import { forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
-export interface ButtonBagProps
+export interface MyButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-const ButtonBag = forwardRef<HTMLButtonElement, ButtonBagProps>(
+const MyButton = forwardRef<HTMLButtonElement, MyButtonProps>(
   ({ className, children, disabled, type = 'button', ...props }, ref) => {
     return (
       <button
@@ -35,6 +35,6 @@ const ButtonBag = forwardRef<HTMLButtonElement, ButtonBagProps>(
   }
 );
 
-ButtonBag.displayName = 'ButtonBag';
+MyButton.displayName = 'MyButton';
 
-export default ButtonBag;
+export default MyButton;

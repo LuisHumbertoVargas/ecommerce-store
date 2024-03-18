@@ -1,6 +1,6 @@
 'use client';
 
-import ButtonBag from '@/components/ui/button-bag';
+import ButtonBag from '@/components/ui/my-button';
 import { ShoppingBag } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
