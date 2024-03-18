@@ -1,5 +1,5 @@
 import getProducts from '@/actions/get-products';
-import getProduct from '@/actions/get.product';
+import getProduct from '@/actions/get-product';
 import Gallery from '@/components/gallery';
 import Info from '@/components/info';
 import ProductList from '@/components/product-list';

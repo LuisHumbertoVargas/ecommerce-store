@@ -1,7 +1,9 @@
+'use client';
+
 import { ShoppingCart } from 'lucide-react';
 import { Product } from '@/types';
 import Currency from '@/components/ui/currency';
-import ButtonBag from './ui/button-bag';
+import ButtonBag from '@/components/ui/button-bag';
 
 interface InfoProps {
   data: Product;
@@ -31,7 +33,7 @@ const Info: React.FC<InfoProps> = ({ data }) => {
         </div>
         <div className='mt-10 flex items-center gap-x-3'>
           <ButtonBag className='flex items-center gap-x-2'>
-            <ShoppingCart size={20} color='white' />
+            <ShoppingCart size={20} color='green' />
             Add To Cart
           </ButtonBag>
         </div>

@@ -9,7 +9,6 @@ const ButtonBag = forwardRef<HTMLButtonElement, ButtonBagProps>(
   ({ className, children, disabled, type = 'button', ...props }, ref) => {
     return (
       <button
-        ref={ref}
         className={cn(
           `
           w-auto
@@ -27,6 +26,8 @@ const ButtonBag = forwardRef<HTMLButtonElement, ButtonBagProps>(
           `,
           className
         )}
+        ref={ref}
+        {...props}
       >
         {children}
       </button>
