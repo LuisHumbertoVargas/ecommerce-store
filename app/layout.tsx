@@ -7,6 +7,7 @@ import ModalProvider from '@/providers/modal-provider';
 import ToasterProvider from '@/providers/toast-provider';
 
 import './globals.css';
+import { ThemeProvider } from '@/providers/theme-provider';
 
 const font = Urbanist({ subsets: ['latin'] });
 
@@ -23,11 +24,13 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={font.className}>
-        <ModalProvider />
-        <ToasterProvider />
-        <Navbar />
-        {children}
-        <Footer />
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+          <ModalProvider />
+          <ToasterProvider />
+          <Navbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
