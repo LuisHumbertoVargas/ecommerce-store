@@ -1,18 +1,21 @@
 'use client';
 
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
-import toast from 'react-hot-toast';
 
 import MyButton from '@/components/ui/my-button';
 import Currency from '@/components/ui/currency';
 import useCart from '@/hooks/use-cart';
 
+import toast from 'react-hot-toast';
+
 const Summary = () => {
   const searchParams = useSearchParams();
   const items = useCart((state) => state.items);
   const removeAll = useCart((state) => state.removeAll);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (searchParams.get('success')) {
@@ -20,24 +23,35 @@ const Summary = () => {
       removeAll();
     }
 
-    if (searchParams.get('cancelled')) {
+    if (searchParams.get('canceled')) {
       toast.error('Something went wrong');
     }
   }, [searchParams, removeAll]);
 
-  const totalPrice = items.reduce((total, item) => {
-    return total + Number(item.price);
-  }, 0);
+  const totalPrice = items.reduce(
+    (total, item) => total + Number(item.price),
+    0
+  );
 
   const onCheckout = async () => {
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
-      {
-        productIds: items.map((item) => item.id),
-      }
-    );
+    setIsLoading(true);
+    setError('');
 
-    window.location = response.data.url;
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
+        {
+          productIds: items.map((item) => item.id),
+        }
+      );
+
+      window.location = response.data.url;
+    } catch (error) {
+      console.error(error);
+      setError('An error occurred during checkout. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -51,9 +65,14 @@ const Summary = () => {
           <Currency value={totalPrice} />
         </div>
       </div>
-      <MyButton onClick={onCheckout} className='w-full mt-6'>
-        Checkout
+      <MyButton
+        onClick={onCheckout}
+        className='w-full mt-6'
+        disabled={isLoading}
+      >
+        {isLoading ? 'Processing...' : 'Checkout'}
       </MyButton>
+      {error && <div className='p-4 text-center text-red-400'>*{error}</div>}
     </div>
   );
 };
