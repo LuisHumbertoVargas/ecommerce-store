@@ -72,7 +72,9 @@ const Summary = () => {
       >
         {isLoading ? 'Processing...' : 'Checkout'}
       </MyButton>
-      {error && <div className='p-4 text-center text-red-400'>*{error}</div>}
+      {error !== '' && (
+        <div className='p-4 text-center text-red-400'>*{error}</div>
+      )}
     </div>
   );
 };

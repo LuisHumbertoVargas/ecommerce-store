@@ -20,7 +20,7 @@ const CartPage = () => {
             <div className='lg:col-span-7'>
               {cart.items.length === 0 && (
                 <p className='text-neutral-500'>
-                  Aún no has agregado productos al carrito
+                  You havent added products to your cart yet
                 </p>
               )}
               <ul>
